@@ -40,6 +40,7 @@ Variables in the php code:
 		$config = parse_ini_file('/home/group10/database.ini');
 		$conn = new mysqli('localhost', $config['username'], $config['password']);
 		
+		
 	
 		if($conn->connect_error){
 			die("Could not connect to database to validate login");
@@ -48,7 +49,8 @@ Variables in the php code:
 		
 		//Prepare and execute query for discussion board title
 		$qry = "SELECT name FROM group10.discussionBoards WHERE board_id = ?;"; 
-		$comm = conn->prepare($qry);
+		
+		$comm = $conn->prepare($qry);
 		
 		$comm->bind_param("i", $id); 
 	
@@ -74,7 +76,7 @@ Variables in the php code:
 		  //How should we go about limiting the number of posts seen? No limit, can only see so many, or divided into pages? 
 		  //If pages, how will we go about this?
 		
-		$comm = conn->prepare($qry);
+		$comm = $conn->prepare($qry);
 		
 		$comm->bind_param("i", $id); 
 	
@@ -93,6 +95,7 @@ Variables in the php code:
 			echo "</div><br/>"; 
 		}
 		
+		/*    */
 		
 		//close everything
 		$comm->close();
