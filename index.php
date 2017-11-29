@@ -29,7 +29,7 @@ url to each discussion boeard will be board.php?id=[insert board id here]
 			while($row = $results->fetch_assoc()){
 				echo "<tr><td>";
 				
-				echo "<a href=\"board.php?id=" . $row['post_id'] . "\">"; 
+				echo "<a href=\"board.php?id=" . $row['board_id'] . "\">"; 
 				
 				echo $row['name']; //Since users can't create discussion boards, the name doesn't need to be encoded
 				
