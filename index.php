@@ -14,7 +14,8 @@ url to each discussion boeard will be board.php?id=[insert board id here]
 	
 	<?php
 		//Code for displaying discussion boards
-		$conn = new mysqli("localhost", "", ""); //user and pass for database omited for now; Do the whole root ini thing for this later
+		$config = parse_ini_file('/home/group10/database.ini');
+		$conn = new mysqli('localhost', $config['username'], $config['password']);
 		if($conn->connect_error){
 			ie("Could not connect to database");
 		}

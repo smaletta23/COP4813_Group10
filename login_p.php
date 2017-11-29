@@ -30,7 +30,8 @@
 	session_start(); 
 	
 	//Connect to database (securly, as shown in sync session 7)
-	$conn = new mysqli("localhost", "", ""); //user and pass for database omited for now; Do the whole root ini thing for this later
+	$config = parse_ini_file('/home/group10/database.ini');
+	$conn = new mysqli('localhost', $config['username'], $config['password']);
 	
 	if($conn->connect_error){
 		die("Could not connect to database to validate login");
