@@ -33,6 +33,8 @@ Variables in the php code:
 <head>
 	<!-- CSS link here; title made inside php code -->
 	<?php
+		session_start(); 
+	
 		//Get url param 'id'
 		$id = $_GET['id']; 
 		
@@ -72,9 +74,18 @@ Variables in the php code:
 		//close prepared command and make/execute new one
 		$comm->close(); 
 		
-		$qry = "SELECT post_id, made_by, made_on, contents FROM group10.posts WHERE board_id = ? ORDER BY made_on ASC;"; 
+?>
+
+<body> 
+
+
+<?php
+		
+		$qry = "SELECT post_id, made_by, made_on, contents FROM group10.posts WHERE board = ? ORDER BY made_on ASC;"; 
 		  //How should we go about limiting the number of posts seen? No limit, can only see so many, or divided into pages? 
 		  //If pages, how will we go about this?
+		
+		echo "<h1>" . $boardname . "</h1>";
 		
 		$comm = $conn->prepare($qry);
 		
@@ -84,11 +95,12 @@ Variables in the php code:
 		$comm->bind_result($postid, $user, $date, $contents);
 		
 		
-		//Open body tag
-		echo "<body>";
+		
+		
 		
 		//Display discussion board posts 
 		while($comm->fetch()){
+			
 			echo "<div style=\"boarder:1px; padding:5px; margin:5px;\" name=\"$postid\" id=\"$postid\">";
 			echo htmlentities($user) . " at " . $date . "<br/>";
 			echo htmlentities($contents); 
